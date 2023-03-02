@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('cpf',20);
             $table->string('telC',20);
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
