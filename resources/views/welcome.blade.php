@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Loja - Bacuá</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{asset('img/home/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{asset('img/home/favicon.ico')}}"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-{{--    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />--}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    {{--    <link href="{{asset('css/styles.css')}}" rel="stylesheet" />--}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
     @vite(['resources/css/styles.css','resources/js/app.js'])
 </head>
 <body id="page-top">
@@ -24,8 +27,9 @@
 <nav class="navbar navbar-expand-lg navbar fixed-top" id="mainNav">
     <div class="container">
         <!-- <a  class="navbar-brand" href="#page-top"><img id="logo" src="assets/img/novasimagens/Bacuá.png" alt="..." /></a> -->
-        <a class="navbar-brand" href="#page-top"><img src="{{asset('img/home/img/navbar-logo.png')}}" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#page-top"><img src="{{asset('img/home/img/navbar-logo.png')}}"/></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars ms-1"></i>
         </button>
@@ -37,16 +41,21 @@
                 <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
                 @if (Route::has('login'))
 
-                        @auth
-                        <li class="nav-item"><a href="{{ (Auth::user()->admin) ? url('/administrador') : url('/home') }}"
-                               class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
-                        @else
-                        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log in</a></li>
+                    @auth
+                        <li class="nav-item"><a
+                                href="{{ (Auth::user()->admin) ? url('/administrador') : url('/home') }}"
+                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
+                    @else
+                        <li class="nav-item"><a href="{{ route('login') }}"
+                                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log
+                                in</a></li>
 
-                            @if (Route::has('register'))
-                            <li class="nav-item"><a href="{{ route('register') }}" class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a></li>
-                            @endif
-                        @endauth
+                        @if (Route::has('register'))
+                            <li class="nav-item"><a href="{{ route('register') }}"
+                                                    class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            </li>
+                        @endif
+                    @endauth
 
                 @endif
             </ul>
@@ -82,7 +91,8 @@
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
                 <h4 class="my-3">Roupas Femininas</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                    architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -90,7 +100,8 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                 <h4 class="my-3">Roupas Masculinas</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                    architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
             <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -98,7 +109,8 @@
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
                 <h4 class="my-3">Acessórios Diversos</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
+                    architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
         </div>
     </div>
@@ -118,7 +130,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/1.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/1.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Roupas Femininas</div>
@@ -133,7 +145,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/2.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/2.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Roupas Masculinas</div>
@@ -148,7 +160,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/3.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/3.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Roupas Social</div>
@@ -163,7 +175,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/4.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/4.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Acessórios</div>
@@ -178,7 +190,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/5.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/5.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Calçados</div>
@@ -193,7 +205,7 @@
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/6.jpg')}}" alt="..." />
+                        <img class="img-fluid" src="{{asset('img/home/img/portfolio/6.jpg')}}" alt="..."/>
                     </a>
                     <div class="portfolio-caption">
                         <div class="portfolio-caption-heading">Perfumes</div>
@@ -213,33 +225,39 @@
         </div>
         <ul class="timeline">
             <li>
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{asset('img/home/img/about/1.jpg')}}" alt="..." /></div>
+                <div class="timeline-image"><img class="rounded-circle img-fluid"
+                                                 src="{{asset('img/home/img/about/1.jpg')}}" alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <!-- <h4>2009-2011</h4> -->
                         <h4 class="subheading">Loja inteiramente unisex</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Trabalhamos com produtos para todos os gêneros</p></div>
+                    <div class="timeline-body"><p class="text-muted">Trabalhamos com produtos para todos os gêneros</p>
+                    </div>
                 </div>
             </li>
             <li class="timeline-inverted">
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{asset('img/home/img/about/2.jpg')}}" alt="..." /></div>
+                <div class="timeline-image"><img class="rounded-circle img-fluid"
+                                                 src="{{asset('img/home/img/about/2.jpg')}}" alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <!-- <h4>March 2011</h4> -->
                         <h4 class="subheading">Parcerias</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Parcerias com diversas perfumarias e relojarias de alta qualidade</p></div>
+                    <div class="timeline-body"><p class="text-muted">Parcerias com diversas perfumarias e relojarias de
+                            alta qualidade</p></div>
                 </div>
             </li>
             <li>
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{{asset('img/home/img/about/3.jpg')}}" alt="..." /></div>
+                <div class="timeline-image"><img class="rounded-circle img-fluid"
+                                                 src="{{asset('img/home/img/about/3.jpg')}}" alt="..."/></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <!-- <h4>December 2015</h4> -->
                         <h4 class="subheading">Fundação da empresa</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Empresa fundada com intuito de fornecer produtos de alta qualidade para nossos clientes</p></div>
+                    <div class="timeline-body"><p class="text-muted">Empresa fundada com intuito de fornecer produtos de
+                            alta qualidade para nossos clientes</p></div>
                 </div>
             </li>
 
@@ -247,9 +265,9 @@
                 <div class="timeline-image">
                     <h4>
                         Faça parte
-                        <br />
+                        <br/>
                         da nossa
-                        <br />
+                        <br/>
                         história!
                     </h4>
                 </div>
@@ -280,25 +298,30 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <!-- Name input-->
-                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                        <input class="form-control" id="name" type="text" placeholder="Your Name *"
+                               data-sb-validations="required"/>
                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                     </div>
                     <div class="form-group">
                         <!-- Email address input-->
-                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                        <input class="form-control" id="email" type="email" placeholder="Your Email *"
+                               data-sb-validations="required,email"/>
                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                     </div>
                     <div class="form-group mb-md-0">
                         <!-- Phone number input-->
-                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
+                               data-sb-validations="required"/>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-group-textarea mb-md-0">
                         <!-- Message input-->
-                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                        <textarea class="form-control" id="message" placeholder="Your Message *"
+                                  data-sb-validations="required"></textarea>
                         <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                     </div>
                 </div>
@@ -311,7 +334,7 @@
                 <div class="text-center text-white mb-3">
                     <div class="fw-bolder">Form submission successful!</div>
                     To activate this form, sign up at
-                    <br />
+                    <br/>
                     <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                 </div>
             </div>
@@ -319,7 +342,9 @@
             <!---->
             <!-- This is what your users will see when there is-->
             <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+            <div class="d-none" id="submitErrorMessage">
+                <div class="text-center text-danger mb-3">Error sending message!</div>
+            </div>
             <!-- Submit Button-->
             <div class="text-center"><a class="btn btn-dark btn-xl text-uppercase" type="submit">Send Message</a></div>
         </form>
@@ -338,30 +363,42 @@
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/1.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Threads
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Illustration
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                <div class="card mb-lg-4">
+                                    <img
+                                        src="https://th.bing.com/th/id/OIP.cdidS0rdsDhgsC3TgViNFAHaFj?w=248&h=186&c=7&r=0&o=5&pid=1.7"
+                                        alt="">
+                                    <h3>Roupa foda</h3>
+                                    <p>Preço R$69.69</p>
+                                    <button class="button">Carrinho</button>
+                                </div>
+
+{{--                            </div>--}}
+
+{{--                            --}}
+{{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                <div class="card mb-lg-4">
+                                    <img
+                                        src="/img/imgProdutos/{{$produto->caminho}}"
+                                        alt="">
+                                    <h3>{{$produto->nomeP}}</h3>
+                                    <p>Preço R${{$produto->preco}}</p>
+                                    <button class="button">Carrinho</button>
+                                </div>
+
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -373,7 +410,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -381,8 +419,12 @@
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/2.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/2.jpg')}}"
+                                 alt="..."/>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -408,7 +450,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -416,8 +459,12 @@
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/3.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/3.jpg')}}"
+                                 alt="..."/>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -443,7 +490,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -451,8 +499,12 @@
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/4.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/4.jpg')}}"
+                                 alt="..."/>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -478,7 +530,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -486,8 +539,12 @@
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/5.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/5.jpg')}}"
+                                 alt="..."/>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
@@ -513,7 +570,8 @@
 <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}" alt="Close modal" /></div>
+            <div class="close-modal" data-bs-dismiss="modal"><img src="{{asset('img/home/img/close-icon.svg')}}"
+                                                                  alt="Close modal"/></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -521,8 +579,12 @@
                             <!-- Project details-->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/6.jpg')}}" alt="..." />
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/6.jpg')}}"
+                                 alt="..."/>
+                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
+                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
+                                nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>
                                     <strong>Client:</strong>
