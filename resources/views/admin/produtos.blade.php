@@ -9,8 +9,11 @@
 
 
                         @if(session('sucesso'))
-                            <p>{{ session('sucesso') }}</p>
+                            <div class="alert alert-success" role="alert">
+                                {{ session('sucesso') }}
+                            </div>
                         @endif
+
 
                         <form method="POST" action="{{route('admin.cadastro')}}" enctype="multipart/form-data">
                             @csrf

@@ -27,9 +27,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/administrador', [\App\Http\Controllers\AdminController::class, 'index'])->name(
     'admin.dashboard'
 )->middleware(['auth', 'admin']);
-Route::get('/administrador/produtos', [\App\Http\Controllers\AdminController::class, 'showProdutos'])->name(
+
+Route::get('/administrador/produto/cadastro', [\App\Http\Controllers\AdminController::class, 'showProdutos'])->name(
     'admin.produtos'
 )->middleware(['auth', 'admin']);
-Route::post('/administrador/cadastro', [\App\Http\Controllers\AdminController::class, 'store'])->name(
+Route::get('/administrador/produto/relatorio', [\App\Http\Controllers\AdminController::class, 'showRelatorio'])->name(
+    'admin.relatorio'
+)->middleware(['auth', 'admin']);
+Route::get('/administrador/produto/estoque', [\App\Http\Controllers\AdminController::class, 'showEstoque'])->name(
+    'admin.estoque'
+)->middleware(['auth', 'admin']);
+Route::delete('/administrador/produto/estoque/excluir/{id}', [\App\Http\Controllers\AdminController::class, 'destroy'])->name(
+    'admin.estoque.excluir'
+)->middleware(['auth', 'admin']);
+Route::put('/administrador/produto/estoque/{id}', [\App\Http\Controllers\AdminController::class, 'edit'])->name(
+    'admin.estoque.edit'
+)->middleware(['auth', 'admin']);
+Route::post('/administrador/produto/cadastro/do', [\App\Http\Controllers\AdminController::class, 'store'])->name(
     'admin.cadastro'
 )->middleware(['auth', 'admin']);

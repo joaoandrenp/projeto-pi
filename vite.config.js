@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'resources/js/demo/datatables-demo.js',
+                'datatables/dataTables.bootstrap4.min.js',
+                'datatables/jquery.dataTables.min.js',
                 'chart.js/Chart.min.js',
                 'jquery-easing/jquery.easing.min.js',
                 'bootstrap/js/bootstrap.bundle.min.js',

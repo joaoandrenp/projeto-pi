@@ -158,9 +158,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="{{route('admin.produtos')}}">Cadastrar</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item" href="{{route('admin.estoque')}}">Estoque</a>
+                    <a class="collapse-item" href="{{route('admin.relatorio')}}">Relatório</a>
                 </div>
             </div>
         </li>
@@ -373,6 +372,7 @@
 <!-- Core plugin JavaScript-->
 {{--<script src="/jquery-easing/jquery.easing.min.js"></script>--}}
 @vite(['jquery-easing/jquery.easing.min.js'])
+
 <!-- Custom scripts for all pages-->
 {{--<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>--}}
 @vite(['resources/js/sb-admin-2.js'])
@@ -380,6 +380,7 @@
 <!-- Page level plugins -->
 {{--<script src="/chart.js/Chart.min.js"></script>--}}
 @vite(['chart.js/Chart.min.js'])
+
 <!-- Page level custom scripts -->
 {{--<script src="{{asset('js/demo/chart-area-demo.js')}}"></script>--}}
 {{--<script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>--}}
