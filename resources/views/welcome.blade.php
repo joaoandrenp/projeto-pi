@@ -34,30 +34,73 @@
             <i class="fas fa-bars ms-1"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+            {{--            @yield('content')--}}
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Produtos</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">Sobre</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
-                @if (Route::has('login'))
+                <li class="nav-item"><a class="nav-link" href="{{ route('carrinho') }}">Carrinho</a></li>
+                {{--                <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"--}}
+                {{--                                        aria-controls="offcanvasScrolling" href="#">Carrinho</a></li>--}}
+                {{--                --}}
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
 
-                    @auth
-                        <li class="nav-item"><a
-                                href="{{ (Auth::user()->admin) ? url('/administrador') : url('/home') }}"
-                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>
-                    @else
-                        <li class="nav-item"><a href="{{ route('login') }}"
-                                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log
-                                in</a></li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
 
-                        @if (Route::has('register'))
-                            <li class="nav-item"><a href="{{ route('register') }}"
-                                                    class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                            </li>
-                        @endif
-                    @endauth
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            @if(Auth::user()->admin)
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                    {{ __('Painel') }}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                @endif
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+                {{--                @if (Route::has('login'))--}}
+
+                {{--                    @auth--}}
+                {{--                        <li class="nav-item"><a--}}
+                {{--                                href="{{ (Auth::user()->admin) ? url('/administrador') : url('/home') }}"--}}
+                {{--                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Home</a></li>--}}
+                {{--                    @else--}}
+                {{--                        <li class="nav-item"><a href="{{ route('login') }}"--}}
+                {{--                                                class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log--}}
+                {{--                                in</a></li>--}}
+
+                {{--                        @if (Route::has('register'))--}}
+                {{--                            <li class="nav-item"><a href="{{ route('register') }}"--}}
+                {{--                                                    class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>--}}
+                {{--                            </li>--}}
+                {{--                        @endif--}}
+                {{--                    @endauth--}}
+
+                {{--                @endif--}}
             </ul>
         </div>
     </div>
@@ -373,30 +416,33 @@
 
                             <div class="card-container">
 
-                                <div class="card mb-lg-4">
-                                    <img
-                                        src="https://th.bing.com/th/id/OIP.cdidS0rdsDhgsC3TgViNFAHaFj?w=248&h=186&c=7&r=0&o=5&pid=1.7"
-                                        alt="">
-                                    <h3>Roupa foda</h3>
-                                    <p>Preço R$69.69</p>
-                                    <button class="button">Carrinho</button>
-                                </div>
+                                {{--                            </div>--}}
 
-{{--                            </div>--}}
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
 
-{{--                            --}}
-{{--                            <div class="card-container">--}}
                                 @foreach($produtos as $produto)
-                                <div class="card mb-lg-4">
-                                    <img
-                                        src="/img/imgProdutos/{{$produto->caminho}}"
-                                        alt="">
-                                    <h3>{{$produto->nomeP}}</h3>
-                                    <p>Preço R${{$produto->preco}}</p>
-                                    <button class="button">Carrinho</button>
-                                </div>
-
+                                    @if($produto->categoria == "camisa" && $produto->tipoP == "feminino")
+                                        <div class="card mb-lg-4">
+                                            <img
+                                                src="/img/imgProdutos/{{$produto->caminho}}"
+                                                alt="">
+                                            <h3>{{$produto->nomeP}}</h3>
+                                            <p>Preço R${{$produto->preco}}</p>
+                                            <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                                  enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $produto->id }}">
+                                                <input type="hidden" name="quantidade" value="1">
+                                                <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                                <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                                <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                                <button type="submit" class="button">Carrinho</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 @endforeach
+
                             </div>
 
                         </div>
@@ -417,28 +463,37 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/2.jpg')}}"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Explore
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Graphic Design
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                {{--                            </div>--}}
+
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                    @if($produto->categoria == "camisa" && $produto->tipoP == "masculino")
+
+                                    <div class="card mb-lg-4">
+                                        <img
+                                            src="/img/imgProdutos/{{$produto->caminho}}"
+                                            alt="">
+                                        <h3>{{$produto->nomeP}}</h3>
+                                        <p>Preço R${{$produto->preco}}</p>
+                                        <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $produto->id }}">
+                                            <input type="hidden" name="quantidade" value="1">
+                                            <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                            <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                            <button type="submit" class="button">Carrinho</button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -457,28 +512,37 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/3.jpg')}}"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Finish
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Identity
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                {{--                            </div>--}}
+
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                    @if($produto->categoria == "roupasocial" && $produto->tipoP == "unisex")
+
+                                    <div class="card mb-lg-4">
+                                        <img
+                                            src="/img/imgProdutos/{{$produto->caminho}}"
+                                            alt="">
+                                        <h3>{{$produto->nomeP}}</h3>
+                                        <p>Preço R${{$produto->preco}}</p>
+                                        <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $produto->id }}">
+                                            <input type="hidden" name="quantidade" value="1">
+                                            <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                            <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                            <button type="submit" class="button">Carrinho</button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -497,28 +561,37 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/4.jpg')}}"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Lines
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Branding
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                {{--                            </div>--}}
+
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                    @if($produto->categoria == "acessorio" && $produto->tipoP == "unisex")
+
+                                    <div class="card mb-lg-4">
+                                        <img
+                                            src="/img/imgProdutos/{{$produto->caminho}}"
+                                            alt="">
+                                        <h3>{{$produto->nomeP}}</h3>
+                                        <p>Preço R${{$produto->preco}}</p>
+                                        <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $produto->id }}">
+                                            <input type="hidden" name="quantidade" value="1">
+                                            <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                            <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                            <button type="submit" class="button">Carrinho</button>
+                                        </form>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -537,28 +610,37 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/5.jpg')}}"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Southwest
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Website Design
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                {{--                            </div>--}}
+
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                    @if($produto->categoria == "calcados" && $produto->tipoP == "unisex")
+
+                                    <div class="card mb-lg-4">
+                                        <img
+                                            src="/img/imgProdutos/{{$produto->caminho}}"
+                                            alt="">
+                                        <h3>{{$produto->nomeP}}</h3>
+                                        <p>Preço R${{$produto->preco}}</p>
+                                        <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $produto->id }}">
+                                            <input type="hidden" name="quantidade" value="1">
+                                            <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                            <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                            <button type="submit" class="button">Carrinho</button>
+                                        </form>
+                                    </div>
+                                        @endif
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -577,28 +659,37 @@
                     <div class="col-lg-8">
                         <div class="modal-body">
                             <!-- Project details-->
-                            <h2 class="text-uppercase">Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{asset('img/home/img/portfolio/6.jpg')}}"
-                                 alt="..."/>
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur
-                                adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt
-                                repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-                                nostrum, reiciendis facere nemo!</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <strong>Client:</strong>
-                                    Window
-                                </li>
-                                <li>
-                                    <strong>Category:</strong>
-                                    Photography
-                                </li>
-                            </ul>
-                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                <i class="fas fa-xmark me-1"></i>
-                                Close Project
-                            </button>
+
+                            <div class="card-container">
+
+                                {{--                            </div>--}}
+
+                                {{--                            --}}
+                                {{--                            <div class="card-container">--}}
+                                @foreach($produtos as $produto)
+                                    @if($produto->categoria == "perfumes" && $produto->tipoP == "unisex")
+
+                                    <div class="card mb-lg-4">
+                                        <img
+                                            src="/img/imgProdutos/{{$produto->caminho}}"
+                                            alt="">
+                                        <h3>{{$produto->nomeP}}</h3>
+                                        <p>Preço R${{$produto->preco}}</p>
+                                        <form action="{{ route('carrinhoAdd') }}" method="POST"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $produto->id }}">
+                                            <input type="hidden" name="quantidade" value="1">
+                                            <input type="hidden" name="nomeP" value="{{ $produto->nomeP }}">
+                                            <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                            <input type="hidden" name="img" value="{{$produto->caminho}}">
+                                            <button type="submit" class="button">Carrinho</button>
+                                        </form>
+                                    </div>
+                                        @endif
+                                @endforeach
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -610,7 +701,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {{--<!-- Core theme JS-->--}}
 {{--<script src="{{asset('js/scripts.js')}}"></script>--}}
-@vite(['resources/js/scripts.js'])
+@vite(['resources/js/scripts.js','resources/js/teste.js'])
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <!-- * *                               SB Forms JS                               * *-->
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->

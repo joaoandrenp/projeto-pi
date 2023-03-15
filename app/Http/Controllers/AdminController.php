@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -84,4 +85,5 @@ class AdminController extends Controller
 
         return redirect(route('admin.estoque'))->with('sucesso', 'Item editado com sucesso!');
     }
+
 }

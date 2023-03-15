@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = new \App\Models\User();
+        $produtos = \App\Models\Produto::all();
+        return view('home', ['user' => $user, 'produtos' => $produtos]);
     }
 }

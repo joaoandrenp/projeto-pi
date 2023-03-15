@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = new \App\Models\User();
     $produtos = \App\Models\Produto::all();
-    return view('welcome', ['user' => $user, 'produtos' => $produtos]);
+    $prod = new \App\Models\Produto();
+    return view('welcome', ['user' => $user, 'produtos' => $produtos, 'prod' => $prod]);
 });
+
+Route::get('/carrinho',[\App\Http\Controllers\CarrinhoController::class,'carrinhoLista'])->name('carrinho');
+Route::post('/carrinho/add',[\App\Http\Controllers\CarrinhoController::class,'addCarrinho'])->name('carrinhoAdd');
+Route::post('/carrinho/remover',[\App\Http\Controllers\CarrinhoController::class,'removerCarrinho'])->name('carrinhoRemover');
+Route::post('/carrinho/additem',[\App\Http\Controllers\CarrinhoController::class,'additemCarrinho'])->name('addItem');
+Route::post('/carrinho/removeritem',[\App\Http\Controllers\CarrinhoController::class,'removeritemCarrinho'])->name('removerItem');
+Route::get('/carrinho/finalizar',[\App\Http\Controllers\CarrinhoController::class,'final'])->name('finalizar')->middleware(['client','auth']);
 
 Auth::routes();
 
