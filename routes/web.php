@@ -17,7 +17,7 @@ Route::get('/', function () {
     $user = new \App\Models\User();
     $produtos = \App\Models\Produto::all();
     return view('welcome', ['user' => $user, 'produtos' => $produtos]);
-});
+})->name('homepage');
 
 Auth::routes();
 
