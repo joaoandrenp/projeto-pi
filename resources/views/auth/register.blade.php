@@ -3,6 +3,7 @@
 {{--@section('content')--}}
 {{--<div class="container">--}}
 {{--    <div class="row justify-content-center">--}}
+
 {{--        <div class="col-md-8">--}}
 {{--            <div class="card">--}}
 {{--                <div class="card-header">{{ __('Register') }}</div>--}}
@@ -115,7 +116,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Registro Bacuá</title>
 
     <!-- Custom fonts for this template-->
     <link href="/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -140,18 +141,18 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Crie Sua Conta!</h1>
                         </div>
                         <form class="user" method="POST" action="{{ route('register') }}">
                             @csrf
                             {{--                            <div class="form-group row">--}}
                             {{--                                <div class="col-sm-6 mb-3 mb-sm-0">--}}
                             {{--                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"--}}
-                            {{--                                           placeholder="First Name">--}}
+                            {{--                                           placeholder="Primeiro Nome">--}}
                             {{--                                </div>--}}
                             {{--                                <div class="col-sm-6">--}}
                             {{--                                    <input type="text" class="form-control form-control-user" id="exampleLastName"--}}
-                            {{--                                           placeholder="Last Name">--}}
+                            {{--                                           placeholder="Sobrenome">--}}
                             {{--                                </div>--}}
                             {{--                            </div>--}}
 
@@ -159,7 +160,7 @@
                                 <input type="text"
                                        class="form-control form-control-user @error('name') is-invalid @enderror"
                                        id="exampleFirstName"
-                                       placeholder="Name" name="name" value="{{ old('name') }}" required
+                                       placeholder="Nome" name="name" value="{{ old('name') }}" required
                                        autocomplete="name" autofocus>
 
                                 @error('name')
@@ -194,7 +195,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail"
-                                       placeholder="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                       placeholder="Seu Email" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -205,7 +206,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
-                                           id="exampleInputPassword" placeholder="Password" name="password" required autocomplete="new-password">
+                                           id="exampleInputPassword" placeholder="Senha" name="password" required autocomplete="new-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -215,19 +216,17 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
-                                           id="exampleRepeatPassword" placeholder="Repeat Password" name="password_confirmation" required autocomplete="new-password">
+                                           id="exampleRepeatPassword" placeholder="Repetir Senha" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Register Account
+                                Registrar-se
                             </button>
                         </form>
                         <hr>
+
                         <div class="text-center">
-                            <a class="small" href="{{ route('password.request') }}">Forgot Password?</a>
-                        </div>
-                        <div class="text-center">
-                            <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
+                            <a class="small" href="{{route('login')}}">Já possui conta? Logue!</a>
                         </div>
                     </div>
                 </div>

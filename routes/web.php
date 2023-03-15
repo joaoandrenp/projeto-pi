@@ -18,7 +18,8 @@ Route::get('/', function () {
     $produtos = \App\Models\Produto::all();
     $prod = new \App\Models\Produto();
     return view('welcome', ['user' => $user, 'produtos' => $produtos, 'prod' => $prod]);
-});
+})->name('homepage');
+
 
 Route::get('/carrinho',[\App\Http\Controllers\CarrinhoController::class,'carrinhoLista'])->name('carrinho');
 Route::post('/carrinho/add',[\App\Http\Controllers\CarrinhoController::class,'addCarrinho'])->name('carrinhoAdd');
