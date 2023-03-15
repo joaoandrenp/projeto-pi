@@ -24,10 +24,11 @@
 </head>
 <body id="page-top">
 <!-- Navigation-->
+<div class="navbar">
 <nav class="navbar navbar-expand-lg navbar fixed-top" id="mainNav">
     <div class="container">
         <!-- <a  class="navbar-brand" href="#page-top"><img id="logo" src="assets/img/novasimagens/Bacuá.png" alt="..." /></a> -->
-        <a class="navbar-brand" href="#page-top"><img src="{{asset('img/home/img/navbar-logo.png')}}"/></a>
+        <a class="navbar-brand" href="{{url('/#services')}}"><img src="{{asset('img/home/img/navbar-logo.png')}}"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -105,6 +106,7 @@
         </div>
     </div>
 </nav>
+</div>
 
 
 <section>
@@ -125,11 +127,7 @@
                 <tbody>
                 @foreach($itens as $item)
                     <tr>
-                        <td>
-                            <img
-                                src="/img/imgProdutos/{{$item->attributes->image}}"
-                                alt="">
-                        </td>
+                        <!-- <td><img src="/img/imgProdutos/{{$item->attributes->image}}"alt=""></td> -->
                         <td>{{$item->name}}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->price }}</td>
@@ -159,9 +157,10 @@
     </div>
 </section>
 <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="botaocarrin">
     <a href="{{url('/#portfolio') }}"><button class="btn btn-primary"><i class="fas fa-arrow-left"></i>Continuar Comprando</button></a>
     <a href="{{route('finalizar') }}"><button class="btn btn-success"><i class="fas fa-check"></i>Finalizar</button></a>
-
+</div>
 </div>
 
 <!-- Bootstrap core JS-->

@@ -488,6 +488,7 @@
                                             <input type="hidden" name="preco" value="{{ $produto->preco }}">
                                             <input type="hidden" name="img" value="{{$produto->caminho}}">
                                             <button type="submit" class="button">Carrinho</button>
+                                            <br>
                                         </form>
                                     </div>
                                     @endif
